@@ -34,3 +34,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         }
     });
 });
+
+Route::post('jwtTest', function () {
+    return response()->json(['message' => 'jwtTest working', 'success' => true], 200);
+})->middleware('jwt');

@@ -19,3 +19,45 @@ Route::get('/profile', function () {
 });
 
 
+// demo group middleware
+Route::get('group_middleware', function () {
+    return 'inside group middleware';
+})->middleware('ok-user');
+
+
+// demo Gate 
+Route::get('/gateCheck', function () {
+    return 'inside laravel gate';
+})->middleware('can:isAdmin');
+
+
+/*
+Inside gate file
+
+@if(Gate::allows('isAdmin'))
+
+<a href="/admin-panel"> Admin Panel </a>
+
+@endif
+
+
+@can('isAdmin')
+
+<a href="/admin-panel"> Admin Panel </a>
+
+@endCan
+
+
+@if(Gate::denies('isAdmin'))
+
+<a href="/guest-page"> Guest Page </a>
+
+@endif
+
+
+@cannot('isAdmin')
+
+<a href="/guest-page"> Guest Page </a>
+
+@endcan
+*/
